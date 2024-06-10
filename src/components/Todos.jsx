@@ -2,7 +2,7 @@ import React from 'react'
 import TodoItem from './TodoItem'
 
 // Menerima function toggleCompleted sebagai sebuah prop
-const Todos = ({ todos, toggleCompleted }) => {
+const Todos = ({ todos, toggleCompleted, toggleDeleted }) => {
   return (
     <div style={styles.container}>
       {todos.map((todo) => {
@@ -12,6 +12,7 @@ const Todos = ({ todos, toggleCompleted }) => {
             todo={todo}
             // Teruskan function toggleCompleted ke component TodoItem
             toggleCompleted={toggleCompleted}
+            toggleDeleted={toggleDeleted}
           />
         )
       })}
