@@ -1,46 +1,45 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { TodoContext } from '../App'
 
-// Menerima function toggleCompleted sebagai sebuah prop
-const TodoItem = ({ todo, toggleCompleted, deleteTodo }) => {
+const TodoItem = ({ todo }) => {
+    const { toggleCompleted, deleteTodo } = useContext(TodoContext)
     const getTodoTitleStyle = () => {
-      if (todo.completed === true) {
-        return { textDecoration: 'line-through' }
-      } else {
-        return { textDecoration: 'none' }
-      }
+        if (todo.completed === true) {
+            return { textDecoration: 'line-through' }
+        } else {
+            return { textDecoration: 'none' }
+        }
     }
-  
+
     return (
         <div style={styles.todoItem}>
-          <input
-            type="checkbox"
-            style={styles.checkbox}
-            onChange={() => toggleCompleted(todo.id)}
-          />
-          <p style={getTodoTitleStyle()}>{todo.title}</p>
-          {/* Tambahkan sebuah button di sini */}
-          <button 
-            style={styles.button}
-            onClick={() => deleteTodo(todo.id)}>x</button>
+            <input
+                type="checkbox"
+                style={styles.checkbox}
+                onChange={() => toggleCompleted(todo.id)}
+            />
+            <p style={getTodoTitleStyle()}>{todo.title}</p>
+            <button style={styles.button} onClick={() => deleteTodo(todo.id)}>
+                x
+            </button>
         </div>
-      )
-    }
-    
-    // Salin CSS yang terbaru CSS di bawah ini
-    const styles = {
-      todoItem: {
+    )
+}
+
+const styles = {
+    todoItem: {
         border: '2px solid #f4f4f4',
         fontSize: '24px',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: '0 20px',
-      },
-      checkbox: {
+    },
+    checkbox: {
         height: '18px',
         width: '18px',
-      },
-      button: {
+    },
+    button: {
         backgroundColor: '#BB0000',
         color: '#fff',
         height: '30px',
@@ -49,7 +48,7 @@ const TodoItem = ({ todo, toggleCompleted, deleteTodo }) => {
         border: 'none',
         cursor: 'pointer',
         fontSize: '16px',
-      },
-    }
-    
-    export default TodoItem
+    },
+}
+
+export default TodoItem
